@@ -3,17 +3,26 @@ import './Auth.css';
 
 export default class Auth extends Component {
   state = {
-    username: '',
-    password: ''
+    isSignUp: true
   }
+
+  handleSwitch = () => {
+    this.setState({ isSignUp: !this.state.isSignUp });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+  }
+
+
   render() {
-    // const { username, password } = this.state;
+    const { isSignUp } = this.state;
     return (
-      <form className="login">
+      <form className="login" onSubmit={this.handleSubmit}>
         <h3>Log in/Sign up!</h3>
         <input name="username" placeholder="username"></input>
-        <input name="password" placeholder="password"></input>
-        <button className="login button">Log In</button>  
+        <input name="password" placeholder="password" type='password'></input>
+        <button onClick={this.handleSwitch} className="login button">Sign {isSignUp ? 'Up' : 'In'}</button>  
       </form>
     );
   }

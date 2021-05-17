@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../home/Home';
+import Auth from '../Auth/Auth';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +12,9 @@ import {
 import './App.css';
 
 class App extends Component {
+  state = {
+    user: null
+  }
 
   render() {
     return (
@@ -23,6 +27,12 @@ class App extends Component {
               <Route path="/" exact={true}
                 render={routerProps => (
                   <Home {...routerProps}/>
+                )}
+              />
+
+              <Route path="/auth" exact={true}
+                render={routerProps => (
+                  <Auth {...routerProps}/>
                 )}
               />
 
