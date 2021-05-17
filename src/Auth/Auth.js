@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Auth.css';
+import { signUp, signIn } from '../utils/api';
 
 export default class Auth extends Component {
   state = {
@@ -20,8 +21,18 @@ export default class Auth extends Component {
     this.setState({ password: target.value });
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
+    const { isSignUp } = this.state;
     e.preventDefault();
+
+    try {
+      const action = isSignUp ? signUp : signIn;
+      const user = await action(this.state);
+      console.log(user);
+    }
+    catch (err) {
+      console.log(err.message);
+    }
   }
 
 
