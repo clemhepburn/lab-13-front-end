@@ -24,6 +24,7 @@ export default class Auth extends Component {
 
   handleSubmit = async e => {
     const { isSignUp } = this.state;
+    const { onUser, history } = this.props;
     e.preventDefault();
 
     this.setState({ error: '' });
@@ -31,7 +32,8 @@ export default class Auth extends Component {
     try {
       const action = isSignUp ? signUp : signIn;
       const user = await action(this.state);
-      console.log(user);
+      onUser(user);
+      history.push('/');
     }
     catch (err) {
       this.setState({ error: err.error });

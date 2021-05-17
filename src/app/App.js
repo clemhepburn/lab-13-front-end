@@ -7,16 +7,24 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
+import TodosPage from '../todos/TodosPage';
+
 import './App.css';
 
 class App extends Component {
   state = {
-    user: null
+    token: window.localStorage.getItem('TOKEN')
+  }
+
+  handleUser = user => {
+    window.localStorage.setItem('TOKEN', user.token);
+    this.setState({ token: user.token });
   }
 
   render() {
+    const { token } = this.state;
     return (
       <div className="App">
         <Router>
@@ -32,19 +40,17 @@ class App extends Component {
 
               <Route path="/auth" exact={true}
                 render={routerProps => (
-                  <Auth {...routerProps}/>
+                  <Auth {...routerProps}
+                    onUser={this.handleUser}/>
                 )}
               />
 
-              <Route path="/resources" exact={true}
-                render={routerProps => (
-                  <div>Implement a page of resources</div>
-                )}
-              />
 
-              <Route path="/resources/:id"
+              <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <div>Implement a page for id {routerProps.match.params.id}</div>
+                  token 
+                    ? <TodosPage {...routerProps} />
+                    : <Redirect to="/auth" />
                 )}
               />
 
