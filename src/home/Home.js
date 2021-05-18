@@ -9,7 +9,10 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Link to="/auth">Sign up or Sign in!</Link>
+        
+        <div><Link to="/todos">Logged in? Click here for your todo list</Link></div>
+        <p>or</p>
+        <div><Link to="/auth">Sign up or Sign in!</Link></div>
       </div>
     );
   }

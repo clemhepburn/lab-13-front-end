@@ -1,9 +1,29 @@
 .Header {
   padding: 20px;
-  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #FAF0EA;
 }
 
 h1 {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: normal;
+
+}
+
+a {
+  text-decoration: underline;
+  color: black;
+  font-size: 1.4rem;
+}
+
+a:hover {
+  font-style: italic;
+  color: black;
+}
+
+.home {
+  font-size: 1.8rem;
 }

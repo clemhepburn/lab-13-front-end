@@ -1,0 +1,23 @@
+.TodosPage {
+
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  align-items: center;
+}
+
+h2 {
+  margin-right: 15px;
+  font-weight: bold;
+}
+

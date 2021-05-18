@@ -5,3 +5,16 @@
   align-items: center;
   padding: 20px;
 }
+
+p {
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-style: normal;
+  color: rgb(128, 128, 191);
+}

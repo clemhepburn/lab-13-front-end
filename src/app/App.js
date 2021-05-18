@@ -54,7 +54,7 @@ class App extends Component {
                 )}
               />
 
-              <Redirect to="/" />
+              {/* <Redirect to="/" /> */}
 
             </Switch>
           </main>
