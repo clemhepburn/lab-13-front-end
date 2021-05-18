@@ -8,8 +8,8 @@ class Header extends Component {
     return (
       <header className="Header">
 
-        <h1>Todo List</h1>
-        <NavLink to="/todos">Todo List</NavLink>
+        <NavLink class="home" to="/">iTodo</NavLink>
+        <NavLink to="/todos">My List</NavLink>
         
       </header>
     );
