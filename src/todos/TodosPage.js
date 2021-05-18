@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addTodo, getTodos } from '../utils/api';
+import { addTodo, deleteTodo, getTodos } from '../utils/api';
 import './TodosPage.css';
 
 export default class TodosPage extends Component {
@@ -37,28 +37,41 @@ export default class TodosPage extends Component {
   }
 
   handleDelete = async id => {
-    console.log('You want to delete: ', id);
+    const { todos } = this.state;
+    try {
+      await deleteTodo(id);
+
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+      this.setState({ todos: updatedTodos });
+    }
+    catch (err) {
+      console.log(err.message);
+    }
   }
 
   render() {
     const { todo, todos } = this.state;
     return (
-      <div>
+      <div className='TodoPage'>
+
         <form onSubmit={this.handleAdd}>
-          <ul>
-            {todos.map(todo => (
-              <li key={todo.task}>
-
-                <h2>{todo.task}</h2>
-                
-                <button>X</button>
-              </li>
-            ))}
-          </ul>
           <input value={todo} onChange={this.handleTodoChange}></input>
-          
-
         </form>
+        <ul>
+          {todos.map(todo => (
+            <li key={todo.id}>
+
+              <h2>{todo.task}</h2>
+                
+              <button onClick={() => this.handleDelete(todo.id)}>X</button>
+            </li>
+          ))}
+            
+        </ul>
+
+          
+                
+        
       </div>
     );
   }
