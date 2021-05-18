@@ -32,3 +32,11 @@ export async function addTodo(todo) {
 
   return response.body;
 }
+
+export async function getTodos() {
+  const response = await request
+    .get('/api/todos')
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+
+  return response.body;
+}

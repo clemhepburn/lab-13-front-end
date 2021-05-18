@@ -5,7 +5,8 @@ import { signUp, signIn } from '../utils/api';
 export default class Auth extends Component {
   state = {
     isSignUp: true,
-    username: '',
+    email: '',
+    name: '',
     password: '',
     error: ''
   }
@@ -14,8 +15,12 @@ export default class Auth extends Component {
     this.setState({ isSignUp: !this.state.isSignUp });
   }
 
-  handleUsernameChange = ({ target }) => {
-    this.setState({ username: target.value });
+  handleEmailChange = ({ target }) => {
+    this.setState({ email: target.value });
+  }
+
+  handleNameChange = ({ target }) => {
+    this.setState({ name: target.value });
   }
 
   handlePasswordChange = ({ target }) => {
@@ -30,7 +35,7 @@ export default class Auth extends Component {
     this.setState({ error: '' });
 
     try {
-      const action = isSignUp ? signUp : signIn;
+      const action = isSignUp ? signIn : signUp;
       const user = await action(this.state);
       onUser(user);
       history.push('/');
@@ -42,13 +47,20 @@ export default class Auth extends Component {
 
 
   render() {
-    const { isSignUp, username, password, error } = this.state;
+    const { isSignUp, email, name, password, error } = this.state;
     return (
       <form className="login" onSubmit={this.handleSubmit}>
         <h3>Log in/Sign up!</h3>
-        <input name="username" placeholder="username" value={username} onChange={this.handleUsernameChange} required={true}></input>
-        <input name="password" placeholder="password" type='password' value={password} onChange={this.handlePasswordChange} required={true}></input>
+
+        <input name='email' placeholder='email' value={email} onChange={this.handleEmailChange}
+          required={true}></input>
+
+        <input name="name" placeholder="name" value={name} onChange={this.handleNameChange} required={true}></input>
+
+        <input name="password" placeholder="password" value={password} onChange={this.handlePasswordChange} required={true}></input>
+
         <button onClick={this.handleSwitch} className="login button">Sign { isSignUp ? 'Up' : 'In'}</button>  
+
         { error && <p>{error}</p>}
       </form>
     );
